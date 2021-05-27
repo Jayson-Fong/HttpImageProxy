@@ -28,9 +28,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 import javax.mail.internet.ContentType;
 import javax.mail.internet.ParseException;
@@ -65,9 +64,9 @@ public class Network {
     public static boolean filter(final URLConnection connection, final Config config) throws ParseException {
         // Get Config Vars
         final int maxLength = config.getInteger(Config.Attribute.LENGTH);
-        final List<String> allowedTypes = Arrays.asList(config.getValue(Config.Attribute.TYPES).split(","));
+        final Stream<String> allowedTypes = Stream.of(config.getValue(Config.Attribute.TYPES).split(","));
         final ContentType responseType = new ContentType(connection.getContentType());
-        return connection.getContentLength() > maxLength || !allowedTypes.stream().parallel().anyMatch(responseType::match);
+        return connection.getContentLength() > maxLength || !allowedTypes.parallel().anyMatch(responseType::match);
     }
     
     public static Optional<BufferedImage> getImage(final URL url, final Config config) {

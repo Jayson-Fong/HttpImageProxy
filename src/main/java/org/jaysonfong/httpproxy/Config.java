@@ -54,11 +54,10 @@ public class Config {
         TYPES("request.types"),
         USECACHE("request.usecache"),
         TIMEOUT("request.timeout"),
+        DEFAULT("request.default"),
         
         LENGTH("response.maxlength"),
-        
-        DEFAULT("service.default"),
-        
+                
         SECRET("security.secret"),
         ALGORITHM("security.algorithm");
         
@@ -84,10 +83,6 @@ public class Config {
             logger.log(Level.SEVERE, configurationException.getLocalizedMessage());
             throw new RuntimeException(configurationException);
         }
-    }
-    
-    public Configuration getConfiguration() {
-        return this.configuration;
     }
     
     public String getValue(Attribute key) {
