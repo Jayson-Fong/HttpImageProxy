@@ -1,4 +1,5 @@
 # HttpImageProxy
+[![Java CI with Maven](https://github.com/Jayson-Fong/HttpImageProxy/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/Jayson-Fong/HttpImageProxy/actions/workflows/maven.yml)
 
 A simple HTTP proxy to serve files (and particularly images) securely to an end-user.
 
